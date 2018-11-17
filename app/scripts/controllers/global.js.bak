@@ -14,7 +14,6 @@
  	'AngularJS',
  	'Karma'
  	];
- 	$rootScope.toppest = true;
  	$rootScope.toggleMenu = [{
  		name: 'Home',
  		url: '#/',
@@ -23,6 +22,10 @@
  		name: 'About',
  		url: '#/about',
  		cond: '/about'
+ 	}, {
+ 		name: 'Contact',
+ 		url: '#/contact',
+ 		cond: '/contact'
  	}]
  	$rootScope.$on('$locationChangeStart', function (event, next, current) {
  		$rootScope.currentPath = $location.$$path;

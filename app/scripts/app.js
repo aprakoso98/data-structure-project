@@ -1,5 +1,5 @@
 'use strict';
-jQuery.noConflict();
+// jQuery.noConflict();
 /**
  * @ngdoc overview
  * @name dataStructureProjectApp
