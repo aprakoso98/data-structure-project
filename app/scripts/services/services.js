@@ -8,6 +8,19 @@
  * Service in the dataStructureProjectApp.
  */
 angular.module('dataStructureProjectApp')
+	.service('_sweet', function(){
+		return swal;
+	})
+	.service('_dirHref', function(){
+		return {
+			go: function(urlPath){
+				var host = location.origin;
+	      var url = host + location.pathname + urlPath;
+	      url = url.replace("#", "#!");
+	      location.href = url;
+	    }
+		}
+	})
   .service('_http', function ($q, $http) {
 		return {
 			ajax: function (url, data, method, headers) {

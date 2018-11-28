@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name dataStructureProjectApp.controller:AboutCtrl
+ * @name dataStructureProjectApp.controller:SiswaCtrl
  * @description
- * # AboutCtrl
+ * # SiswaCtrl
  * Controller of the dataStructureProjectApp
  */
 angular.module('dataStructureProjectApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('SiswaCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

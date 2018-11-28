@@ -20,6 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
+    <div ng-include="'views/templates.html'"></div>
     <div ng-include="'views/index.html'"></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -45,13 +46,16 @@
     <!-- endbuild -->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/scripts.js"></script>
         <script src="scripts/native.js"></script>
+        <script src="scripts/filters/filters.js"></script>
+        <script src="scripts/services/services.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/global.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/directives.js"></script>
-        <script src="scripts/filters/filters.js"></script>
-        <script src="scripts/services/services.js"></script>
+        <script src="scripts/controllers/siswa.js"></script>
+        <script src="scripts/controllers/guru.js"></script>
         <!-- endbuild -->
 </body>
 </html>

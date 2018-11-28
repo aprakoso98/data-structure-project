@@ -6,6 +6,154 @@
 * # directives
 */
 angular.module('dataStructureProjectApp')
+.directive('onFinishRender', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      if (scope.$last === true) {
+        $timeout(function(){
+          scope.$emit(attr.onFinishRender);
+        });
+      }
+    }
+  }
+})
+.directive('ngAlias', function($compile) {
+  return {
+    restrict: "A",
+    link: function(scope, element, attrs) {
+      var args = attrs.ngAlias.split('as').map(function(elm){return elm.replace(/ /g,'')});
+      scope[args[0]] = '';
+      var dot = args[1].split('.');
+      var object = {};
+      dot.forEach(function(value, index){
+        index === 0 ? object = scope[value] : object = object[value] === null ? object[value] = {} : object[value];
+      });
+      scope[args[0]] = object;
+    }
+  };
+})
+.directive('myTable', function (_sweet) {
+  return {
+    restrict: 'E, A, C',
+    templateUrl: 'table-template',
+    link: function (scope, element, attrs, controller) {
+      element = $(element);
+      scope.$watch('options.aaData', handleModelUpdates, true);
+      scope.$watch('options.addData', addData, true);
+      scope.$watch('options.ubahData', ubahData, true);
+      scope.$watch('options.hapusData', hapusData, true);
+      setTimeout(function(){
+        var table = element.find("table");
+        scope.options.aoColumns = [{
+          className: "table-index",
+          render: function ( data, type, full, meta ) {
+            return meta.row;
+          }
+        }].concat(scope.options.aoColumns);
+        scope.myTable = table.dataTable(scope.options);
+        scope.$apply();
+      }, 500);
+      function handleModelUpdates(data) {
+        try {
+          var data;
+          if (Array.isArray(data)){
+            if (data.length > 0){
+              data = data;
+              data = data.map(function(a){
+                return [null].concat(a);
+              });
+            }else{
+              data = null;
+            }
+          }else{
+            data = null;
+          }
+          scope.myTable.fnClearTable();
+          if (data) {
+            scope.myTable.fnAddData(data);
+          }
+        } catch(e) {}
+      }
+      function getDataSelect(){
+        var index = element.find(".selected .table-index");
+        return index.html();
+      }
+      function addData(fn){
+        scope.addData = function(){
+          var columns = scope.options.aoColumns;
+          _sweet({
+            title: 'Add Data',
+            html: columns.map(function(dt, index){
+              return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="">', dt.sTitle, index - 1) : '';
+            }).join(""),
+            focusConfirm: false,
+            preConfirm: () => {
+              var ret = []
+              for (var i = 0; i < columns.length; i++) {
+                if (i != 0){
+                  ret.push(document.getElementById('swal-input' + (i - 1)).value);
+                }
+              }
+              return ret;
+            }
+          }).then(function(resp){
+            if (resp.value){
+              scope.options.aaData.push(resp.value);
+              scope.$apply();
+            }
+          });
+        }
+      }
+      function ubahData(fn){
+        scope.ubahData = function(){
+          var i = getDataSelect(),
+          data = scope.options.aaData[i],
+          columns = scope.options.aoColumns;
+          if (i){
+            _sweet({
+              title: 'Edit Data',
+              html: columns.map(function(dt, index){
+                return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="%s">', dt.sTitle, index - 1, data[index - 1]) : '';
+              }).join(""),
+              focusConfirm: false,
+              preConfirm: () => {
+                var ret = []
+                for (var i = 0; i < columns.length; i++) {
+                  if (i != 0){
+                    ret.push(document.getElementById('swal-input' + (i - 1)).value);
+                  }
+                }
+                return ret;
+              }
+            }).then(function(resp){
+              if (resp.value){
+                scope.options.aaData[i] = resp.value;
+                scope.$apply();
+              }
+            });
+          }else{
+            _sweet("Pilih salah satu data", "", "warning");
+          }
+        }
+      }
+      function hapusData(fn){
+        scope.hapusData = function(){
+          var i = getDataSelect();
+          if (i){
+            scope.options.aaData.splice(i, 1);
+          }else{
+            _sweet("Pilih salah satu data", "", "warning");
+          }
+        }
+      }
+    },
+    scope: {
+      myTable: "=",
+      options: "="
+    }
+  };
+})
 .directive('toggleMenuSide', function(){
   return {
     restrict: 'A',
@@ -18,7 +166,7 @@ angular.module('dataStructureProjectApp')
     }
   }
 })
-.directive('dirHref', function(){
+.directive('dirHref', function(_dirHref){
   return {
     restrict: 'A',
     scope: {
@@ -26,10 +174,7 @@ angular.module('dataStructureProjectApp')
     },
     link: function(scope, element, attrs) {
       element.on("click", function(){
-        var host = location.origin;
-        var url = host + location.pathname + scope.dirHref;
-        url = url.replace("#", "#!");
-        location.href = url;
+        _dirHref.go(scope.dirHref);
       });
       jQuery(element).css("cursor", "pointer");
     }

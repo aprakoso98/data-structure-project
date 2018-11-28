@@ -32,6 +32,32 @@ Array.prototype.serializeArrayToObject = function(){
 	}
 	return ret;
 }
+Array.prototype.loopCallback = function(callback, reverse, index) {
+	var arr = this;
+	function retCallback(timeout){
+		timeout = timeout || 0;
+		setTimeout(function(){
+			arr.loopCallback(callback, reverse, index + 1);
+		}, timeout);
+	}
+	function retCallbackReverse(timeout){
+		timeout = timeout || 0;
+		setTimeout(function(){
+			if (index > 0)
+				arr.loopCallback(callback, reverse, index);
+		}, timeout);
+	}
+	if (reverse){
+		index = index || arr.length;
+		index--;
+		callback(arr[index], index, retCallbackReverse);
+	}else{
+		index = index || 0;
+		if (index < arr.length){
+			callback(arr[index], index, retCallback);
+		}
+	}
+}
 Number.getRandomArbitrary = function(min, max) {
     return Math.random() * (max - min) + min;
 }
