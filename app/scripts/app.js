@@ -39,6 +39,11 @@ angular
         controller: 'GuruCtrl',
         controllerAs: 'guru'
       })
+      .when('/siswa/:kelas', {
+        templateUrl: 'views/siswa-detail.html',
+        controller: 'SiswaDetailCtrl',
+        controllerAs: 'siswaDetail'
+      })
       .otherwise({
         redirectTo: '/'
       });

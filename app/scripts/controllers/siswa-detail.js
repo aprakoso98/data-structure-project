@@ -2,19 +2,20 @@
 
 /**
  * @ngdoc function
- * @name dataStructureProjectApp.controller:GuruCtrl
+ * @name dataStructureProjectApp.controller:SiswaDetailCtrl
  * @description
- * # GuruCtrl
+ * # SiswaDetailCtrl
  * Controller of the dataStructureProjectApp
  */
 angular.module('dataStructureProjectApp')
-  .controller('GuruCtrl', function ($scope) {
+  .controller('SiswaDetailCtrl', function ($scope, $routeParams) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
-    ];
+    ];   
     window.scope = $scope = $scope;
+    $scope.params = $routeParams;
 		$scope.addData = function () {
 		}
 		$scope.ubahData = function(){

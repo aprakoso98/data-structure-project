@@ -63,7 +63,7 @@
         <span>{{menu.name}}</span>
       </a>
       <div class="dropdown-menu" ng-if="menu.type == 'sub'" aria-labelledby="pagesDropdown">
-        <a class="dropdown-item" ng-click="setIdSubMenu(menu.url, sub.id)" ng-repeat="sub in menu.sub">{{sub.name}}</a>
+        <a class="dropdown-item" dir-href="{{menu.url}}/{{sub.id}}" ng-repeat="sub in menu.sub">{{sub.name}}</a>
       </div>
     </li>
   </ul>

@@ -1,34 +1,33 @@
 <script type="text/ng-template" id="table-template">
-	<div class="command">
-		<button ng-click="addData()">Add Data</button>
-		<button ng-click="ubahData()">Ubah Data</button>
-		<button ng-click="hapusData()">Hapus Data</button>
-	</div>
-	<table class="table data-table"></table>
+<div class="command">
+  <button ng-click="addData()">Add Data</button>
+  <button ng-click="ubahData()">Ubah Data</button>
+  <button ng-click="hapusData()">Hapus Data</button>
+</div>
+<table class="table data-table"></table>
 </script>
 <script type="text/ng-template" id="bootstrap-modal">
-	<div id="{{handler}}" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{header}}</h4>
-            </div>
-            <div class="modal-body">
-
-                <p class="text-warning">{{body}}</p>
-
-            </div>
-            <div class="modal-footer">
-
-                <p class="text-left">{{footer}}</p>
-
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-ng-click="callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>
-
-            </div>
-        </div>
+<div id="{{handler}}" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{{header}}</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-warning">{{body}}</p>
+      </div>
+      <div class="modal-footer">
+        <p class="text-left">{{footer}}</p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-ng-click="callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>
+      </div>
     </div>
+  </div>
 </div>
-
+</script>
+<script type="text/ng-template" id="breadcrumb">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb" bind-html-compile="dataLink"></ol>
+  </nav>
 </script>

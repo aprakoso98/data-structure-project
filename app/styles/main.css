@@ -11483,8 +11483,17 @@ div.dataTables_wrapper span.select-info, div.dataTables_wrapper span.select-item
   }
 }
 body {
-  overflow-y: scroll;
   font-size: 15px;
+}
+
+.breadcrumb {
+  font-size: 120%;
+}
+.breadcrumb .breadcrumb-item {
+  color: #007bff;
+}
+.breadcrumb .breadcrumb-item:hover {
+  text-decoration: underline;
 }
 
 .wrapper-index {
@@ -11508,6 +11517,9 @@ body {
 }
 
 .dataTables_wrapper .data-table .DataTables_sort_icon {
+  display: none;
+}
+.dataTables_wrapper .data-table .table-index {
   display: none;
 }
 .dataTables_wrapper .dataTables_paginate a {

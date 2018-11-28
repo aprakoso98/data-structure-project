@@ -1,6 +1,14 @@
 body {
-	overflow-y: scroll;
 	font-size: 15px;
+}
+.breadcrumb {
+	font-size: 120%;
+	.breadcrumb-item {
+		color: #007bff;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
 .wrapper-index {
 	position: relative;
@@ -24,7 +32,7 @@ body {
 			display: none;
 		}
 		.table-index {
-			// display: none;
+			display: none;
 		}
 	}
 	.dataTables_paginate {
