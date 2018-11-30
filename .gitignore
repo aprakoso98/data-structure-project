@@ -4,3 +4,4 @@
 *.map
 .tmp
 *.bak
+/package-lock.json

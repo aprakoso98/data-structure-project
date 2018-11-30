@@ -25,9 +25,15 @@ angular.module('dataStructureProjectApp')
     $scope.myTable = null;
 		$scope.options = {
 			aoColumns: [{
-				sTitle: "Surname"
+				sTitle: "NIS"
 			}, {
-				sTitle: "First Name"
+				sTitle: "NISN"
+			}, {
+				sTitle: "Nama"
+			}, {
+				sTitle: "TTL"
+			}, {
+				sTitle: "kjahdk"
 			}],
 			select: {
 				style: "single"
@@ -41,7 +47,7 @@ angular.module('dataStructureProjectApp')
 			hapusData: $scope.hapusData
 		}
 		setTimeout(function(){
-			$scope.options.aaData = [[1, 1],[2, 2],[3, 3],[4, 4],[5, 5]]
+			$scope.options.aaData = [[1, 1,1,1,1],[2, 2,2,2,2],[3, 3,3,3,3],[4, 4,4,4,4],[5, 5,5,5,5]]
 			$scope.$apply();
 		}, 1000);
   });
