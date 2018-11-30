@@ -6,6 +6,24 @@
  * # directives
  */
 angular.module('dataStructureProjectApp')
+.directive('commandTable', function(){
+  return {
+    scope: {
+      commandTable: '@'
+    },
+    link: function(scope, ele, attr){
+      scope.$watch("commandTable", function(){
+        var element = $(ele);
+        $(ele).append("<span class='command-hover'>" + scope.commandTable + "</span>");
+        $(ele).hover(function(){
+          element.find(".command-hover").toggleClass('show-value');
+        }, function(){
+          element.find(".command-hover").removeClass('show-value');
+        });
+      });
+    }
+  }
+})
   .directive('onFinishRender', function($timeout) {
     return {
       restrict: 'A',

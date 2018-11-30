@@ -1,8 +1,23 @@
 <script type="text/ng-template" id="table-template">
 <div class="command">
-  <button ng-click="addData()">Add Data</button>
-  <button ng-click="ubahData()">Ubah Data</button>
-  <button ng-click="hapusData()">Hapus Data</button>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-lg btn-primary" ng-click="addData()" command-table="Add Data">
+        <i class="fa fa-plus" />
+      </button>
+      <button class="btn btn-lg btn-info" ng-click="ubahData()" command-table="Ubah Data">
+        <i class="fa fa-pen" />
+      </button>
+      <button class="btn btn-lg btn-danger" ng-click="hapusData()" command-table="Hapus Data">
+        <i class="fa fa-trash" />
+      </button>
+    </div>
+    <div class="col align-right">
+      <button class="btn btn-lg btn-success" ng-click="hapusData()" command-table="Export Data">
+        <i class="fa fa-file-export" />
+      </button>
+    </div>
+  </div>
 </div>
 <table class="table data-table"></table>
 </script>

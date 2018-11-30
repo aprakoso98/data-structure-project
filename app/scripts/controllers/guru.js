@@ -24,6 +24,9 @@ angular.module('dataStructureProjectApp')
 		$scope.counter = 5;
     $scope.myTable = null;
 		$scope.options = {
+			oClasses: {
+				sFilterInput: 'form-control'
+			},
 			aoColumns: [{
 				sTitle: "NIS"
 			}, {

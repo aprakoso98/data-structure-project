@@ -1,9 +1,19 @@
 body {
 	font-size: 15px;
 }
+.align-right {
+	text-align: right;
+}
 [my-table] {
 	.command {
 		margin-bottom: 10px;
+		.command-hover {
+			transition: .3s;
+			font-size: 0%;
+			&.show-value {
+				font-size: 100%;
+			}
+		}
 	}
 	.dataTables_wrapper {
 		.data-table {
