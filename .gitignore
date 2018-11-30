@@ -5,3 +5,4 @@
 .tmp
 *.bak
 /package-lock.json
+/app/styles/main.css
