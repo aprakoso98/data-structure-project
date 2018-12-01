@@ -8,7 +8,7 @@
  * Controller of the dataStructureProjectApp
  */
 angular.module('dataStructureProjectApp')
-  .controller('GlobalCtrl', function($rootScope, $location, _http) {
+  .controller('GlobalCtrl', function($rootScope, $location, _http, _api) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,6 +16,12 @@ angular.module('dataStructureProjectApp')
     ];
     _http.get("json/toggleMenu.json").then(function(resp) {
       $rootScope.toggleMenu = resp.data;
+      _api.getKelas().then(function(resp){
+        $rootScope.toggleMenu.map(function(data){
+          data.sub = data.name == "Siswa" ? resp.data : data.sub;
+          return data;
+        });
+      });
     });
     $rootScope.toppest = true;
     $rootScope.$on('$locationChangeStart', function(event, next, current) {

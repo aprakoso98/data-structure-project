@@ -21,6 +21,20 @@ angular.module('dataStructureProjectApp')
 	    }
 		}
 	})
+	.service('_api', function(_http){
+		return {
+			getKelas: function(){
+				return _http.get(api + "/data-structure-ws/rest/kelas/all");
+			},
+			getSiswaKelas: function(kelas){
+				return _http.post(api + "/data-structure-ws/rest/siswa/find-by-kelas", {
+					search: {
+						kelas: kelas
+					}
+				});
+			}
+		}
+	})
   .service('_http', function ($q, $http) {
 		return {
 			ajax: function (url, data, method, headers) {

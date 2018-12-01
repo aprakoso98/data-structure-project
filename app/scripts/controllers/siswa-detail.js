@@ -8,7 +8,7 @@
  * Controller of the dataStructureProjectApp
  */
 angular.module('dataStructureProjectApp')
-  .controller('SiswaDetailCtrl', function ($scope, $routeParams, _http) {
+  .controller('SiswaDetailCtrl', function ($scope, $routeParams, _api) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,7 +29,7 @@ angular.module('dataStructureProjectApp')
 			ubahData: $scope.ubahData,
 			hapusData: $scope.hapusData
 		}
-		_http.get(api + "/data-structure-ws/rest/student/all").then(function(resp){
+		_api.getSiswaKelas($scope.params.kelas).then(function(resp){
     	var col = [], row = [], data = resp.data;
     	for (var i = 0; i < data.length; i++) {
     		var temp = data[i]
