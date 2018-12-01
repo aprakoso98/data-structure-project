@@ -24,10 +24,17 @@ angular.module('dataStructureProjectApp')
 		$scope.counter = 5;
     $scope.myTable = null;
 		$scope.options = {
-			oClasses: {
-				sFilterInput: 'form-control'
-			},
 			aoColumns: [{
+				sTitle: "NIS"
+			}, {
+				sTitle: "NISN"
+			}, {
+				sTitle: "Nama"
+			}, {
+				sTitle: "TTL"
+			}, {
+				sTitle: "kjahdk"
+			},{
 				sTitle: "NIS"
 			}, {
 				sTitle: "NISN"
@@ -41,8 +48,6 @@ angular.module('dataStructureProjectApp')
 			select: {
 				style: "single"
 			},
-			sScrollX: "100%",
-	    sScrollXInner: "110%",
 			bJQueryUI: true,
 			bDestroy: true,
 			addData: $scope.addData,
@@ -50,7 +55,7 @@ angular.module('dataStructureProjectApp')
 			hapusData: $scope.hapusData
 		}
 		setTimeout(function(){
-			$scope.options.aaData = [[1, 1,1,1,1],[2, 2,2,2,2],[3, 3,3,3,3],[4, 4,4,4,4],[5, 5,5,5,5]]
+			$scope.options.aaData = [["iuasdyaskjdhaskjhdkjashdjkhaskjhdkjashdkjashkjdhkasjhdkjashdjkashkjdhasjkdhkasjhdkjasdhksjhdjkhaskjdhashdkjhsjpoiewuioruewhjzxhfjkhsdkjhfkhmnzmnjkdshkjshfdkjh",9832798234781,3782678684321,2837483268471,9823783874321,87234627634781,8723469879841,982743863451,978267868732648723641,18725786],[2,2,2,2,2,2,2,2,2,2],[3,3,3,3,3,3,3,3,3,3],[4,4,4,4,4,4,4,4,4,4],[5,5,5,5,5,5,5,5,5,5]]
 			$scope.$apply();
-		}, 1000);
+		}, 200);
   });

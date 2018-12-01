@@ -115,24 +115,39 @@ angular.module('dataStructureProjectApp')
         scope.$watch('options.addData', addData, true);
         scope.$watch('options.ubahData', ubahData, true);
         scope.$watch('options.hapusData', hapusData, true);
-        setTimeout(function() {
-          var table = element.find("table");
-          scope.options.aoColumns = [{
-            className: "table-index",
-            render: function(data, type, full, meta) {
-              return meta.row;
+        scope.$watch('options.loaded', function(isTrue){
+          console.log(isTrue);
+          if (isTrue){
+            var table = element.find("table");
+            var obj = {
+              sScrollX: "1000%",
+              sScrollXInner: "100%",
+              bJQueryUI: true,
+              bDestroy: true,
+              select: {
+                style: "single"
+              },
+              oClasses: {
+                sFilterInput: 'form-control'
+              }
             }
-          }].concat(scope.options.aoColumns);
-          scope.myTable = table.dataTable(scope.options);
-          scope.$apply();
-        }, 100);
+            scope.options.aoColumns = [{
+              className: "table-index",
+              render: function(data, type, full, meta) {
+                return meta.row;
+              }
+            }].concat(scope.options.aoColumns);
+            scope.options = Object.assign(obj, scope.options);
+            console.log(scope.options);
+            scope.myTable = table.dataTable(scope.options);
+          }
+        }, true);
         function getDataSelect() {
           var index = element.find(".selected .table-index");
           return index.html();
         }
         function handleModelUpdates(data) {
           try {
-            var data;
             if (Array.isArray(data)) {
               if (data.length > 0) {
                 data = data;
@@ -149,7 +164,9 @@ angular.module('dataStructureProjectApp')
             if (data) {
               scope.myTable.fnAddData(data);
             }
-          } catch (e) {}
+          } catch (err) {
+            console.error(err);
+          }
         }
         function addData(fn) {
           scope.addData = function() {

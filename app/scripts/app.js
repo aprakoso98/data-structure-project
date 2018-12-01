@@ -1,5 +1,4 @@
 'use strict';
-// jQuery.noConflict();
 /**
  * @ngdoc overview
  * @name dataStructureProjectApp
@@ -8,6 +7,7 @@
  *
  * Main module of the application.
  */
+var api = "http://localhost:20000";
 angular
   .module('dataStructureProjectApp', [
     'ngAnimate',

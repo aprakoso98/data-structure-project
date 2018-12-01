@@ -8,7 +8,7 @@ body {
 	.command {
 		margin-bottom: 10px;
 		.command-hover {
-			transition: .3s;
+			transition: .15s;
 			font-size: 0%;
 			&.show-value {
 				font-size: 100%;
@@ -17,10 +17,7 @@ body {
 	}
 	.dataTables_wrapper {
 		.data-table {
-			.DataTables_sort_icon {
-				display: none;
-			}
-			.table-index {
+			.DataTables_sort_icon, .table-index {
 				display: none;
 			}
 		}
