@@ -28,6 +28,7 @@ angular.module('dataStructureProjectApp')
         });
       });
     });
+    $rootScope.myModal = {}
     $rootScope.toppest = true;
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
       $rootScope.currentPath = $location.$$path;

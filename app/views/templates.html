@@ -21,67 +21,22 @@
 </div>
 <table class="table data-table"></table>
 </script>
-<script type="text/ng-template" id="bootstrap-modal">
-  <div id="{{handler}}" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">{{header}}</h4>
-      </div>
-      <div class="modal-body">
-        <p class="text-warning">{{body}}</p>
-      </div>
-      <div class="modal-footer">
-        <p class="text-left">{{footer}}</p>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-ng-click="callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>
-      </div>
-    </div>
-  </div>
-</div>
-</script>
 <script type="text/ng-template" id="breadcrumb">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb" bind-html-compile="dataLink"></ol>
   </nav>
 </script>
-<div class="my-popup">
-  <div class="my-popup-container">
-    <div class="my-popup-content">
-      <div class="my-popup-header"></div>
-      <div class="my-popup-body"></div>
-      <div class="my-popup-footer"></div>
-      <form>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Email address</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Example select</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Example multiple select</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-      </form>
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" ng-bind="myModal.title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" bind-html-compile="myModal.body"></div>
+      <div class="modal-footer" bind-html-compile="myModal.commandText"></div>
     </div>
   </div>
 </div>

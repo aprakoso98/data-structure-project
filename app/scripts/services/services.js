@@ -11,6 +11,37 @@ angular.module('dataStructureProjectApp')
 	.service('_sweet', function(){
 		return swal;
 	})
+	.service('_modal', function($rootScope, $templateCache){
+		return {
+			open: function(myModal){
+				var close = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+				myModal = myModal || {}
+				myModal.Command = {}
+				myModal.commandText = "";
+				myModal.body = myModal.body || "";
+				var selectedModal = "MyModal", template = $templateCache.get(myModal.body);
+				if (!myModal.body.isHTML()){
+					if (template && myModal.body != selectedModal){
+						myModal.body = template;
+					}
+				}
+				if (myModal.command){
+					for (var key in myModal.command){
+						var val = myModal.command[key]
+						var btn = sprintf('<button type="button" class="btn %s" ng-click="myModal.Command[\'%s\']()">%s</button>', val.class || "", key, key);
+						myModal.Command[key] = val.fn;
+						myModal.commandText += btn;
+					}
+				}
+				myModal.commandText += close;
+				$rootScope.myModal = myModal;
+				$('#myModal').modal('show');
+			},
+			close: function(){
+				$('#myModal').modal('hide');
+			}
+		}
+	})
 	.service('_dirHref', function(){
 		return {
 			go: function(urlPath){

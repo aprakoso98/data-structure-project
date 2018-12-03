@@ -44,11 +44,10 @@ angular.module('dataStructureProjectApp')
           return scope.$eval(attrs.bindHtmlCompile);
         }, function(value) {
           element.html(value && value.toString());
-          var compileScope = scope;
           if (attrs.bindHtmlScope) {
-            compileScope = scope.$eval(attrs.bindHtmlScope);
+            scope = scope.$eval(attrs.bindHtmlScope);
           }
-          $compile(element.contents())(compileScope);
+          $compile(element.contents())(scope);
         });
       }
     }

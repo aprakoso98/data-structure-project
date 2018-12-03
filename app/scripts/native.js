@@ -103,6 +103,10 @@ String.prototype.ucwords = function() {
     return letter.toUpperCase();
   });
 }
+String.prototype.isHTML = function() {
+  var str = this, doc = new DOMParser().parseFromString(str, "text/html");
+  return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
+}
 Object.filterObj = function(Obj, Arr) {
   var ret = {}
   for (var key in Obj) {
