@@ -8,7 +8,7 @@
  * Controller of the dataStructureProjectApp
  */
 angular.module('dataStructureProjectApp')
-  .controller('GlobalCtrl', function($rootScope, $location, _http, _api) {
+  .controller('GlobalCtrl', function($rootScope, $location, _http, _api, _modal) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,8 +29,32 @@ angular.module('dataStructureProjectApp')
       });
     });
     $rootScope.myModal = {}
+    $rootScope.FormLogin = {}
     $rootScope.toppest = true;
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
       $rootScope.currentPath = $location.$$path;
     });
+    $rootScope.doLogin = function(){
+      _modal.open({
+        title: "Login",
+        body: "login",
+        command: {
+          "Sign In": {
+            class: "btn-primary",
+            fn: function(){
+              _modal.open({
+                title: "Login Berhasil",
+                body: JSON.stringify($rootScope.FormLogin)
+              });
+            }
+          }
+        }
+      })
+    }
+    $rootScope.doLogout = function(){
+      _modal.open({
+        title: "Logout Berhasil",
+        body: JSON.stringify($rootScope.FormLogin)
+      });
+    }
   });
