@@ -1,0 +1,12 @@
+{
+  "Jenis Kelamin": {
+    "type": "select",
+    "val": [
+      "L",
+      "P"
+    ]
+  },
+  "Alamat": {
+  	"type": "textarea"
+  }
+}

@@ -16,7 +16,8 @@ angular.module('dataStructureProjectApp')
     ];   
     window.scope = $scope = $scope;
     $scope.params = $routeParams;
-		$scope.addData = function () {
+		$scope.addData = function (data) {
+      console.log(data)
 		}
 		$scope.ubahData = function(){
 		}

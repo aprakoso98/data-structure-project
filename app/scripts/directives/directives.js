@@ -6,24 +6,24 @@
  * # directives
  */
 angular.module('dataStructureProjectApp')
-.directive('commandTable', function(){
-  return {
-    scope: {
-      commandTable: '@'
-    },
-    link: function(scope, ele, attr){
-      scope.$watch("commandTable", function(){
-        var element = $(ele);
-        $(ele).append("<span class='command-hover'>" + scope.commandTable + "</span>");
-        $(ele).hover(function(){
-          element.find(".command-hover").toggleClass('show-value');
-        }, function(){
-          element.find(".command-hover").removeClass('show-value');
+  .directive('commandTable', function() {
+    return {
+      scope: {
+        commandTable: '@'
+      },
+      link: function(scope, ele, attr) {
+        scope.$watch("commandTable", function() {
+          var element = $(ele);
+          $(ele).append("<span class='command-hover'>" + scope.commandTable + "</span>");
+          $(ele).hover(function() {
+            element.find(".command-hover").toggleClass('show-value');
+          }, function() {
+            element.find(".command-hover").removeClass('show-value');
+          });
         });
-      });
+      }
     }
-  }
-})
+  })
   .directive('onFinishRender', function($timeout) {
     return {
       restrict: 'A',
@@ -105,7 +105,7 @@ angular.module('dataStructureProjectApp')
       }
     };
   })
-  .directive('myTable', function(_sweet) {
+  .directive('myTable', function($rootScope, _sweet) {
     return {
       restrict: 'E, A, C',
       templateUrl: 'table-template',
@@ -115,9 +115,35 @@ angular.module('dataStructureProjectApp')
         scope.$watch('options.addData', addData, true);
         scope.$watch('options.ubahData', ubahData, true);
         scope.$watch('options.hapusData', hapusData, true);
-        scope.$watch('options.loaded', function(isTrue){
-          console.log(isTrue);
-          if (isTrue){
+        scope.$watch('options.loaded', loaded, true);
+        var forms = {
+          text: function(id, name, value) {
+            return sprintf('<div class="form-group">\
+              <label for="%s">%s</label>\
+              <input type="text" class="form-control" id="%s" name="%s" value="%s">\
+            </div>', id, name, id, id, value);
+          },
+          select: function(id, name, options){
+            options = options.map(function(opt){
+              return sprintf("<option>%s</option>", opt);
+            }).join("");
+            return sprintf('<div class="form-group">\
+              <label for="%s">%s</label>\
+              <select class="form-control" id="%s" name="%s">\
+                <option disabled value="">%s</option>%s\
+              </select>\
+            </div>', id, name, id, id, name, options);
+          },
+          textarea: function(id, name, value){
+            return sprintf('<div class="form-group">\
+              <label for="%s">%s</label>\
+              <textarea class="form-control" id="%s" name="%s" rows="3">%s</textarea>\
+            </div>', id, name, id, id, value);
+          }
+        }
+
+        function loaded(isTrue) {
+          if (isTrue) {
             var table = element.find("table");
             var obj = {
               sScrollX: "1000%",
@@ -141,11 +167,13 @@ angular.module('dataStructureProjectApp')
             console.log(scope.options);
             scope.myTable = table.dataTable(scope.options);
           }
-        }, true);
+        }
+
         function getDataSelect() {
           var index = element.find(".selected .table-index");
           return index.html();
         }
+
         function handleModelUpdates(data) {
           try {
             if (Array.isArray(data)) {
@@ -165,34 +193,53 @@ angular.module('dataStructureProjectApp')
               scope.myTable.fnAddData(data);
             }
           } catch (err) {
-            console.error(err);
+            // console.error(err);
           }
         }
+
         function addData(fn) {
           scope.addData = function() {
             var columns = scope.options.aoColumns;
             _sweet({
               title: 'Add Data',
-              html: columns.map(function(dt, index) {
-                return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="">', dt.sTitle, index - 1) : '';
-              }).join(""),
-              preConfirm: function() {
-                var ret = []
-                for (var i = 0; i < columns.length; i++) {
-                  if (i != 0) {
-                    ret.push($('#swal-input' + (i - 1)).val());
+              showCancelButton: true,
+              confirmButtonText: "Add",
+              html: sprintf('<form id="form-swal">%s</form>', columns.map(function(dt, index) {
+                var ret = "";
+                if (index != 0){
+                  if ($rootScope.mappingInput.hasOwnProperty(dt.sTitle)){
+                    var oData = $rootScope.mappingInput[dt.sTitle]
+                    if (oData.type == "select"){
+                      ret = forms.select(dt.sTitle, dt.sTitle, oData.val);
+                    }else if (oData.type == "textarea"){
+                      ret = forms.textarea(dt.sTitle, dt.sTitle, "");
+                    }else{
+                      ret = forms.text(dt.sTitle, dt.sTitle, "");
+                    }
+                  }else{
+                    ret = forms.text(dt.sTitle, dt.sTitle, "");
                   }
                 }
                 return ret;
+              }).join("")),
+              preConfirm: function() {
+                var ret = []
+                var data = $("#form-swal").serializeArray();
+                data.map(function(dt){
+                  ret.push(dt.value);
+                });
+                fn(ret)
+                // return ret;
               }
             }).then(function(resp) {
               if (resp.value) {
-                scope.options.aaData.push(resp.value);
-                scope.$apply();
+                // scope.options.aaData.push(resp.value);
+                // scope.$apply();
               }
             });
           }
         }
+
         function ubahData(fn) {
           scope.ubahData = function() {
             var i = getDataSelect(),
@@ -224,6 +271,7 @@ angular.module('dataStructureProjectApp')
             }
           }
         }
+
         function hapusData(fn) {
           scope.hapusData = function() {
             var i = getDataSelect();
@@ -306,9 +354,11 @@ angular.module('dataStructureProjectApp')
       },
       link: function($scope, $element, $attrs) {
         initialize();
+
         function initialize() {
           createEventListeners();
         }
+
         function createEventListeners() {
           $element.on('click', function() {
             $location.hash($scope.anchorSmoothScroll);
@@ -316,6 +366,7 @@ angular.module('dataStructureProjectApp')
             scrollTo($scope.anchorSmoothScroll);
           });
         }
+
         function scrollTo(eID) {
           var i;
           var startY = currentYPosition();
@@ -346,6 +397,7 @@ angular.module('dataStructureProjectApp')
             timer++;
           }
         }
+
         function currentYPosition() {
           if (window.pageYOffset) {
             return window.pageYOffset;
@@ -358,6 +410,7 @@ angular.module('dataStructureProjectApp')
           }
           return 0;
         }
+
         function elmYPosition(eID) {
           var elm = document.getElementById(eID);
           var y = elm.offsetTop;

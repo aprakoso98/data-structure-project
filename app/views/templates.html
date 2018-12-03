@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="table-template">
-<div class="command">
+  <div class="command">
   <div class="row">
     <div class="col">
       <button class="btn btn-lg btn-primary" ng-click="addData()" command-table="Add Data">
@@ -22,7 +22,7 @@
 <table class="table data-table"></table>
 </script>
 <script type="text/ng-template" id="bootstrap-modal">
-<div id="{{handler}}" class="modal fade">
+  <div id="{{handler}}" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -46,3 +46,42 @@
     <ol class="breadcrumb" bind-html-compile="dataLink"></ol>
   </nav>
 </script>
+<div class="my-popup">
+  <div class="my-popup-container">
+    <div class="my-popup-content">
+      <div class="my-popup-header"></div>
+      <div class="my-popup-body"></div>
+      <div class="my-popup-footer"></div>
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Email address</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Example select</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect2">Example multiple select</label>
+          <select multiple class="form-control" id="exampleFormControlSelect2">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Example textarea</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
