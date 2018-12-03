@@ -23,7 +23,7 @@ angular.module('dataStructureProjectApp')
       _api.getKelas().then(function(resp) {
         $rootScope.allKelas = resp.data;
         $rootScope.toggleMenu.map(function(data) {
-          data.sub = data.name == "Kelas" ? resp.data : data.sub;
+          data.sub = data.name == "Siswa" ? resp.data : data.sub;
           return data;
         });
       });

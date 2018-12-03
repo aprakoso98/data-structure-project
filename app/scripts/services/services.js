@@ -35,7 +35,11 @@ angular.module('dataStructureProjectApp')
 				}
 				myModal.commandText += close;
 				$rootScope.myModal = myModal;
-				$('#myModal').modal('show');
+				$('#myModal').modal({
+					backdrop: 'static',
+					keyboard: false,
+					show: true
+				});
 			},
 			close: function(){
 				$('#myModal').modal('hide');

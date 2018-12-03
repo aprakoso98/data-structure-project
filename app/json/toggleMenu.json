@@ -12,8 +12,8 @@
     "cond": "/guru"
   },
   {
-    "name": "Kelas",
-    "url": "#/kelas",
+    "name": "Siswa",
+    "url": "#/siswa",
     "type": "sub",
     "sub": [
       {

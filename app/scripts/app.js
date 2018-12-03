@@ -29,7 +29,7 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/kelas', {
+      .when('/siswa', {
         templateUrl: 'views/siswa.html',
         controller: 'SiswaCtrl',
         controllerAs: 'siswa'
@@ -39,7 +39,7 @@ angular
         controller: 'GuruCtrl',
         controllerAs: 'guru'
       })
-      .when('/kelas/:kelas', {
+      .when('/siswa/:kelas', {
         templateUrl: 'views/siswa-detail.html',
         controller: 'SiswaDetailCtrl',
         controllerAs: 'siswaDetail'
