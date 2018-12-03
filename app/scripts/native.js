@@ -105,7 +105,9 @@ String.prototype.ucwords = function() {
 }
 String.prototype.isHTML = function() {
   var str = this, doc = new DOMParser().parseFromString(str, "text/html");
-  return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
+  return Array.from(doc.body.childNodes).some(function(node){
+    return node.nodeType === 1;
+  });
 }
 Object.filterObj = function(Obj, Arr) {
   var ret = {}
