@@ -27,7 +27,6 @@
   </nav>
 </script>
 <script type="text/ng-template" id="login">
-  <form method="post" action='' name="login_form">
   <div class="form-group">
     <label for="usr">Username:</label>
     <input type="text" ng-model="FormLogin.username" class="form-control" id="usr">
@@ -36,10 +35,9 @@
     <label for="usr">Password:</label>
     <input type="password" ng-model="FormLogin.password" class="form-control" id="usr">
   </div>
-</form>
 </script>
 <div class="modal" id="myModal">
-  <div class="modal-dialog">
+  <div class="modal-dialog {{myModal.class}}">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" ng-bind="myModal.title"></h5>

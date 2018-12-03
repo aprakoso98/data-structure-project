@@ -43,6 +43,7 @@ angular.module('dataStructureProjectApp')
             class: "btn-primary",
             fn: function(){
               _modal.open({
+                class: "modal-sm",
                 title: "Login Berhasil",
                 body: JSON.stringify($rootScope.FormLogin)
               });
@@ -53,6 +54,7 @@ angular.module('dataStructureProjectApp')
     }
     $rootScope.doLogout = function(){
       _modal.open({
+        class: "modal-sm",
         title: "Logout Berhasil",
         body: JSON.stringify($rootScope.FormLogin)
       });
