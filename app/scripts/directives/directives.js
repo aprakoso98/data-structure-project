@@ -203,32 +203,40 @@ angular.module('dataStructureProjectApp')
               title: 'Add Data',
               showCancelButton: true,
               confirmButtonText: "Add",
-              html: sprintf('<form id="form-swal">%s</form>', columns.map(function(dt, index) {
-                var ret = "";
-                if (index != 0){
-                  if ($rootScope.mappingInput.hasOwnProperty(dt.sTitle)){
-                    var oData = $rootScope.mappingInput[dt.sTitle]
-                    if (oData.type == "select"){
-                      ret = forms.select(dt.sTitle, dt.sTitle, oData.val);
-                    }else if (oData.type == "textarea"){
-                      ret = forms.textarea(dt.sTitle, dt.sTitle, "");
-                    }else{
-                      ret = forms.text(dt.sTitle, dt.sTitle, "");
-                    }
-                  }else{
-                    ret = forms.text(dt.sTitle, dt.sTitle, "");
+              html: columns.map(function(dt, index) {
+                  return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="%s">', dt.sTitle, index - 1, '') : '';
+                }).join(""),
+                // sprintf('<form id="form-swal">%s</form>', columns.map(function(dt, index) {
+                //   var ret = "";
+                //   if (index != 0){
+                //     if ($rootScope.mappingInput.hasOwnProperty(dt.sTitle)){
+                //       var oData = $rootScope.mappingInput[dt.sTitle]
+                //       if (oData.type == "select"){
+                //         ret = forms.select(dt.sTitle, dt.sTitle, oData.val);
+                //       }else if (oData.type == "textarea"){
+                //         ret = forms.textarea(dt.sTitle, dt.sTitle, "");
+                //       }else{
+                //         ret = forms.text(dt.sTitle, dt.sTitle, "");
+                //       }
+                //     }else{
+                //       ret = forms.text(dt.sTitle, dt.sTitle, "");
+                //     }
+                //   }
+                //   return ret;
+                // }).join("")),
+              preConfirm: function() {
+                // var data = $("#form-swal").serializeArray();
+                // data.map(function(dt){
+                //   ret.push(dt.value);
+                // });
+                // fn(ret)
+                var ret = []
+                for (var i = 0; i < columns.length; i++) {
+                  if (i != 0) {
+                    ret.push($('#swal-input' + (i - 1)).val());
                   }
                 }
                 return ret;
-              }).join("")),
-              preConfirm: function() {
-                var ret = []
-                var data = $("#form-swal").serializeArray();
-                data.map(function(dt){
-                  ret.push(dt.value);
-                });
-                fn(ret)
-                // return ret;
               }
             }).then(function(resp) {
               if (resp.value) {
