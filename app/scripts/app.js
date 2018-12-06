@@ -54,6 +54,11 @@ angular
         controller: 'KelasCtrl',
         controllerAs: 'kelas'
       })
+      .when('/mutasi', {
+        templateUrl: 'views/mutasi.html',
+        controller: 'MutasiCtrl',
+        controllerAs: 'mutasi'
+      })
       .otherwise({
         redirectTo: '/'
       });
