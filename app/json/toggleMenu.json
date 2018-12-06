@@ -33,6 +33,12 @@
         "id": "Kelas 2b"
       }
     ],
+    "cond": "/siswa"
+  },
+  {
+    "name": "Kelas",
+    "url": "#/kelas",
+    "type": "non-sub",
     "cond": "/kelas"
   }
 ]

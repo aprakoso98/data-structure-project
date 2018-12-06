@@ -44,6 +44,16 @@ angular
         controller: 'SiswaDetailCtrl',
         controllerAs: 'siswaDetail'
       })
+      .when('/kelas', {
+        templateUrl: 'views/kelas.html',
+        controller: 'KelasCtrl',
+        controllerAs: 'kelas'
+      })
+      .when('/kelas', {
+        templateUrl: 'views/kelas.html',
+        controller: 'KelasCtrl',
+        controllerAs: 'kelas'
+      })
       .otherwise({
         redirectTo: '/'
       });
