@@ -1,6 +1,6 @@
 <nav class="navbar main navbar-expand navbar-dark bg-dark static-top">
   <a class="navbar-brand mr-1" dir-href="#/">Data Structure</a>
-  <button class="btn btn-link btn-sm text-white menu-navbar" toggle-menu-side>
+  <button class="btn btn-link btn-sm text-white menu-navbar" toggle-menu-side="false">
     <i class="fas fa-bars"></i>
   </button>
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -51,18 +51,32 @@
 </nav>
 <div class="container main" id="wrapper">
   <ul class="sidebar navbar-nav">
-    <li class="nav-item" ng-class="{ 'active': menu.cond == currentPath, 'dropdown': menu.type == 'sub' }" ng-repeat="menu in toggleMenu">
-      <a class="nav-link" dir-href="{{menu.url}}" ng-if="menu.type == 'non-sub'">
+    <li class="nav-item" ng-class="{ 'active': currentPath == '/' }">
+      <a class="nav-link" dir-href="#/">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>{{menu.name}}</span>
+        <span>Home</span>
       </a>
-      <a class="nav-link dropdown-toggle" ng-if="menu.type == 'sub'" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>{{menu.name}}</span>
+    </li>
+    <li class="nav-item" ng-class="{ 'active': currentPath == '/guru' }">
+      <a class="nav-link" dir-href="#/guru">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Guru</span>
       </a>
-      <div class="dropdown-menu" ng-if="menu.type == 'sub'" aria-labelledby="pagesDropdown">
-        <a class="dropdown-item" dir-href="{{menu.url}}/{{sub.kelas}}" ng-repeat="sub in menu.sub">{{sub.kelas}}</a>
+    </li>
+    <li class="nav-item dropdown" ng-class="{ 'active': currentPath == '/siswa' }">
+      <a class="nav-link dropdown-toggle" id="siswaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Siswa</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="siswaDropdown">
+        <a class="dropdown-item" dir-href="#/siswa/{{data.kelas}}" ng-repeat="data in allKelas">{{data.kelas}}</a>
       </div>
+    </li>
+    <li class="nav-item" ng-class="{ 'active': currentPath == '/kelas' }">
+      <a class="nav-link" dir-href="#/kelas">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Kelas</span>
+      </a>
     </li>
   </ul>
   <div id="content-wrapper">

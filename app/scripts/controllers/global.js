@@ -18,15 +18,8 @@ angular.module('dataStructureProjectApp')
     _http.get("json/mappingInput.json").then(function(resp) {
       $rootScope.mappingInput = resp.data;
     });
-    _http.get("json/toggleMenu.json").then(function(resp) {
-      $rootScope.toggleMenu = resp.data;
-      _api.getKelas().then(function(resp) {
-        $rootScope.allKelas = resp.data;
-        $rootScope.toggleMenu.map(function(data) {
-          data.sub = data.name == "Siswa" ? resp.data : data.sub;
-          return data;
-        });
-      });
+    _api.getKelas().then(function(resp) {
+      $rootScope.allKelas = resp.data;
     });
     $rootScope.myModal = {}
     $rootScope.FormLogin = {}

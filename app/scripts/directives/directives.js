@@ -308,11 +308,28 @@ angular.module('dataStructureProjectApp')
   .directive('toggleMenuSide', function() {
     return {
       restrict: 'A',
+      scope: {
+        toggleMenuSide: '@'
+      },
       link: function(scope, element, attrs) {
+        var tog;
+        function toggle(toggled){
+          if (toggled || toggled == 'true'){
+            $("body").addClass("sidebar-toggled");
+            $(".sidebar").addClass("toggled");
+            tog = false;
+          }else{
+            $("body").removeClass("sidebar-toggled");
+            $(".sidebar").removeClass("toggled");
+            tog = true;
+          }
+        }
+        scope.$watch('toggleMenuSide', function(val){
+          toggle(val);
+        });
         element.on("click", function(e) {
           e.preventDefault();
-          $("body").toggleClass("sidebar-toggled");
-          $(".sidebar").toggleClass("toggled");
+          toggle(tog);
         });
       }
     }
