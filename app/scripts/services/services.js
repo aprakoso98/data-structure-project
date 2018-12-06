@@ -11,6 +11,16 @@ angular.module('dataStructureProjectApp')
 	.service('_sweet', function(){
 		return swal;
 	})
+	.service('_loading', function(){
+		return {
+			show: function(){
+				$(".loading").addClass("visible");
+			},
+			hide: function(){
+				$(".loading").removeClass("visible");
+			}
+		}
+	})
 	.service('_modal', function($rootScope, $templateCache){
 		return {
 			open: function(myModal){

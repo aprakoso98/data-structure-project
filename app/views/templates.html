@@ -36,6 +36,34 @@
     <input type="password" ng-model="FormLogin.password" class="form-control" id="usr">
   </div>
 </script>
+<script type="text/ng-template" id="form-modal">
+  <form id="my-table-form">
+    <div ng-repeat="column in myModalData.columnsForm">
+      <div class="form-group" ng-if="column.valVal.type == 'input'">
+        <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
+        <input type="text" ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}">
+      </div>
+      <div class="form-group" ng-if="column.valVal.type == 'date'">
+        <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
+        <input type="date" ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}">
+      </div>
+      <div class="form-group" ng-if="column.valVal.type == 'select'">
+        <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
+        <select ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}">
+          <option ng-repeat="opt in column.valVal.val">{{opt}}</option>
+        </select>
+      </div>
+      <div class="form-group" ng-if="column.valVal.type == 'textarea'">
+        <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
+        <textarea ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}" rows="3"></textarea>
+      </div>
+      <div class="form-group" ng-if="column.valVal.type == 'file'">
+        <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
+        <input type="file" ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control-file" id="form-modal-{{column.sTitle.toValidId()}}">
+      </div>
+    </div>
+  </form>
+</script>
 <div class="modal" id="myModal">
   <div class="modal-dialog {{myModal.class}}">
     <div class="modal-content">

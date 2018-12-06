@@ -104,207 +104,6 @@ angular.module('dataStructureProjectApp')
       }
     };
   })
-  .directive('myTable', function($rootScope, _sweet) {
-    return {
-      restrict: 'E, A, C',
-      templateUrl: 'table-template',
-      link: function(scope, element, attrs, controller) {
-        element = $(element);
-        scope.$watch('options.aaData', handleModelUpdates, true);
-        scope.$watch('options.addData', addData, true);
-        scope.$watch('options.ubahData', ubahData, true);
-        scope.$watch('options.hapusData', hapusData, true);
-        scope.$watch('options.loaded', loaded, true);
-        var forms = {
-          text: function(id, name, value) {
-            return sprintf('<div class="form-group">\
-              <label for="%s">%s</label>\
-              <input type="text" class="form-control" id="%s" name="%s" value="%s">\
-            </div>', id, name, id, id, value);
-          },
-          select: function(id, name, options){
-            options = options.map(function(opt){
-              return sprintf("<option>%s</option>", opt);
-            }).join("");
-            return sprintf('<div class="form-group">\
-              <label for="%s">%s</label>\
-              <select class="form-control" id="%s" name="%s">\
-                <option disabled value="">%s</option>%s\
-              </select>\
-            </div>', id, name, id, id, name, options);
-          },
-          textarea: function(id, name, value){
-            return sprintf('<div class="form-group">\
-              <label for="%s">%s</label>\
-              <textarea class="form-control" id="%s" name="%s" rows="3">%s</textarea>\
-            </div>', id, name, id, id, value);
-          }
-        }
-
-        function loaded(isTrue) {
-          if (isTrue) {
-            var table = element.find("table");
-            var obj = {
-              sScrollX: "1000%",
-              sScrollXInner: "100%",
-              bJQueryUI: true,
-              bDestroy: true,
-              select: {
-                style: "single"
-              },
-              oClasses: {
-                sFilterInput: 'form-control'
-              }
-            }
-            scope.options.aoColumns = [{
-              className: "table-index",
-              render: function(data, type, full, meta) {
-                return meta.row;
-              }
-            }].concat(scope.options.aoColumns);
-            scope.options = Object.assign(obj, scope.options);
-            console.log(scope.options);
-            scope.myTable = table.dataTable(scope.options);
-          }
-        }
-
-        function getDataSelect() {
-          var index = element.find(".selected .table-index");
-          return index.html();
-        }
-
-        function handleModelUpdates(data) {
-          try {
-            if (Array.isArray(data)) {
-              if (data.length > 0) {
-                data = data;
-                data = data.map(function(a) {
-                  return [null].concat(a);
-                });
-              } else {
-                data = null;
-              }
-            } else {
-              data = null;
-            }
-            scope.myTable.fnClearTable();
-            if (data) {
-              scope.myTable.fnAddData(data);
-            }
-          } catch (err) {
-            // console.error(err);
-          }
-        }
-
-        function addData(fn) {
-          scope.addData = function() {
-            var columns = scope.options.aoColumns;
-            _sweet({
-              title: 'Add Data',
-              showCancelButton: true,
-              confirmButtonText: "Add",
-              html: columns.map(function(dt, index) {
-                  return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="%s">', dt.sTitle, index - 1, '') : '';
-                }).join(""),
-                // sprintf('<form id="form-swal">%s</form>', columns.map(function(dt, index) {
-                //   var ret = "";
-                //   if (index != 0){
-                //     if ($rootScope.mappingInput.hasOwnProperty(dt.sTitle)){
-                //       var oData = $rootScope.mappingInput[dt.sTitle]
-                //       if (oData.type == "select"){
-                //         ret = forms.select(dt.sTitle, dt.sTitle, oData.val);
-                //       }else if (oData.type == "textarea"){
-                //         ret = forms.textarea(dt.sTitle, dt.sTitle, "");
-                //       }else{
-                //         ret = forms.text(dt.sTitle, dt.sTitle, "");
-                //       }
-                //     }else{
-                //       ret = forms.text(dt.sTitle, dt.sTitle, "");
-                //     }
-                //   }
-                //   return ret;
-                // }).join("")),
-              preConfirm: function() {
-                // var data = $("#form-swal").serializeArray();
-                // data.map(function(dt){
-                //   ret.push(dt.value);
-                // });
-                // fn(ret)
-                var ret = []
-                for (var i = 0; i < columns.length; i++) {
-                  if (i != 0) {
-                    ret.push($('#swal-input' + (i - 1)).val());
-                  }
-                }
-                return ret;
-              }
-            }).then(function(resp) {
-              if (resp.value) {
-                // scope.options.aaData.push(resp.value);
-                // scope.$apply();
-              }
-            });
-          }
-        }
-
-        function ubahData(fn) {
-          scope.ubahData = function() {
-            var i = getDataSelect(),
-              data = scope.options.aaData[i],
-              columns = scope.options.aoColumns;
-            if (i) {
-              _sweet({
-                title: 'Edit Data',
-                html: columns.map(function(dt, index) {
-                  return index != 0 ? sprintf('%s<input id="swal-input%s" class="swal2-input" value="%s">', dt.sTitle, index - 1, data[index - 1]) : '';
-                }).join(""),
-                preConfirm: function() {
-                  var ret = []
-                  for (var i = 0; i < columns.length; i++) {
-                    if (i != 0) {
-                      ret.push($('#swal-input' + (i - 1)).val());
-                    }
-                  }
-                  return ret;
-                }
-              }).then(function(resp) {
-                if (resp.value) {
-                  scope.options.aaData[i] = resp.value;
-                  scope.$apply();
-                }
-              });
-            } else {
-              _sweet("Pilih salah satu data", "", "warning");
-            }
-          }
-        }
-
-        function hapusData(fn) {
-          scope.hapusData = function() {
-            var i = getDataSelect();
-            if (i) {
-              _sweet({
-                showCancelButton: true,
-                type: 'question',
-                title: "Hapus data ini?"
-              }).then(function(resp) {
-                if (resp.value) {
-                  scope.options.aaData.splice(i, 1);
-                  scope.$apply();
-                }
-              });
-            } else {
-              _sweet("Pilih salah satu data", "", "warning");
-            }
-          }
-        }
-      },
-      scope: {
-        myTable: "=",
-        options: "="
-      }
-    };
-  })
   .directive('toggleMenuSide', function() {
     return {
       restrict: 'A',
@@ -313,23 +112,25 @@ angular.module('dataStructureProjectApp')
       },
       link: function(scope, element, attrs) {
         var tog;
-        function toggle(toggled){
-          if (toggled || toggled == 'true'){
-            $("body").addClass("sidebar-toggled");
-            $(".sidebar").addClass("toggled");
-            tog = false;
-          }else{
+
+        function toggle() {
+          if (tog) {
             $("body").removeClass("sidebar-toggled");
             $(".sidebar").removeClass("toggled");
+            tog = false;
+          } else {
+            $("body").addClass("sidebar-toggled");
+            $(".sidebar").addClass("toggled");
             tog = true;
           }
         }
-        scope.$watch('toggleMenuSide', function(val){
-          toggle(val);
+        scope.$watch('toggleMenuSide', function(val) {
+          tog = val == 'true' ? true : false;
+          toggle();
         });
         element.on("click", function(e) {
           e.preventDefault();
-          toggle(tog);
+          toggle();
         });
       }
     }

@@ -1,1 +1,9 @@
 $blue: #0600ff;
+
+$circleDiam: 50px;
+$innerCircleDiam: $circleDiam/3;
+$rotatingCircleDiam: $circleDiam/5;
+
+$innerCirclePos: ($circleDiam - $innerCircleDiam)/2;
+$rotatingCirclePosLeft: ($circleDiam - $innerCircleDiam)/2 - $rotatingCircleDiam;
+$rotatingCirclePosTop: $circleDiam/2 - $rotatingCircleDiam/2;

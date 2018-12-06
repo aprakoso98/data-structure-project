@@ -22,11 +22,15 @@ angular.module('dataStructureProjectApp')
       $rootScope.allKelas = resp.data;
     });
     $rootScope.myModal = {}
+    $rootScope.myModalData = {}
     $rootScope.FormLogin = {}
     $rootScope.toppest = true;
     $rootScope.$on('$locationChangeStart', function(event, next, current) {
       $rootScope.currentPath = $location.$$path;
     });
+    $rootScope.toValidId = function(str){
+      return str.toValidId();
+    }
     $rootScope.doLogin = function(){
       _modal.open({
         title: "Login",

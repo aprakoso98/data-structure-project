@@ -8,5 +8,10 @@
   },
   "Alamat": {
   	"type": "textarea"
-  }
+  },
+  "Agama": {"type": "select",
+    "val": [
+      "Islam",
+      "Kristen"
+    ]}
 }

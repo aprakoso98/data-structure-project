@@ -92,6 +92,9 @@ String.prototype.getNameFromUrl = function() {
     name = decodeURI(name);
   return name;
 }
+String.prototype.toValidId = function() {
+  return this.replace(/ /g, "-");
+}
 String.prototype.ucfirst = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -104,8 +107,9 @@ String.prototype.ucwords = function() {
   });
 }
 String.prototype.isHTML = function() {
-  var str = this, doc = new DOMParser().parseFromString(str, "text/html");
-  return Array.from(doc.body.childNodes).some(function(node){
+  var str = this,
+    doc = new DOMParser().parseFromString(str, "text/html");
+  return Array.from(doc.body.childNodes).some(function(node) {
     return node.nodeType === 1;
   });
 }
@@ -115,6 +119,15 @@ Object.filterObj = function(Obj, Arr) {
     if (Arr.Contains(key)) {
       ret[key] = Obj[key]
     }
+  }
+  return ret;
+}
+function serializeArray(form){
+  var formData = form.serializeArray();
+  var ret = {}
+  for (var i = 0; i < formData.length; i++) {
+    var data = formData[i]
+    ret[data.name] = data.value;
   }
   return ret;
 }
