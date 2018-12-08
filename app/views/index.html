@@ -1,5 +1,5 @@
 <nav class="navbar main navbar-expand navbar-dark bg-dark static-top">
-  <a class="navbar-brand mr-1" dir-href="#/">Data Structure</a>
+  <a class="navbar-brand mr-1" dir-href="#/">Sistem PDS</a>
   <button class="btn btn-link btn-sm text-white menu-navbar" toggle-menu-side="false">
     <i class="fas fa-bars"></i>
   </button>
@@ -53,29 +53,40 @@
   <ul class="sidebar navbar-nav">
     <li class="nav-item" ng-class="{ 'active': currentPath == '/' }">
       <a class="nav-link" dir-href="#/">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-fw fa-home"></i>
         <span>Home</span>
-      </a>
-    </li>
-    <li class="nav-item" ng-class="{ 'active': currentPath == '/guru' }">
-      <a class="nav-link" dir-href="#/guru">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Guru</span>
       </a>
     </li>
     <li class="nav-item dropdown" ng-class="{ 'active': currentPath == '/siswa' }">
       <a class="nav-link dropdown-toggle" id="siswaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-fw fa-users"></i>
         <span>Siswa</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="siswaDropdown">
         <a class="dropdown-item" dir-href="#/siswa/{{data.idKelas}}" ng-repeat="data in allKelas">{{data.idKelas}}</a>
       </div>
     </li>
+    <li class="nav-item dropdown" ng-class="{ 'active': currentPath == '/siswa' }">
+      <a class="nav-link dropdown-toggle" id="mutasiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-clipboard"></i>
+        <span>Pelaporan</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="mutasiDropdown">
+        <a class="dropdown-item" dir-href="#/pelaporan/mutasi">Mutasi Siswa</a>
+        <a class="dropdown-item" dir-href="#/pelaporan/lomba">Perlombaan</a>
+        <a class="dropdown-item" dir-href="#/pelaporan/bantuan">Pengajuan Bantuan</a>
+      </div>
+    </li>
     <li class="nav-item" ng-class="{ 'active': currentPath == '/kelas' }">
       <a class="nav-link" dir-href="#/kelas">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-fw fa-table"></i>
         <span>Kelas</span>
+      </a>
+    </li>
+    <li class="nav-item" ng-class="{ 'active': currentPath == '/guru' }">
+      <a class="nav-link" dir-href="#/guru">
+        <i class="fas fa-fw fa-graduation-cap"></i>
+        <span>Guru</span>
       </a>
     </li>
   </ul>

@@ -43,6 +43,7 @@ angular.module('dataStructureProjectApp')
     $scope.counter = 5;
     $scope.myTable = null;
     $scope.options = {
+      canDelete: false,
       addData: $scope.addData,
       ubahData: $scope.ubahData,
       hapusData: $scope.hapusData
@@ -66,7 +67,6 @@ angular.module('dataStructureProjectApp')
       }
       $scope.options.aoColumns = col;
       $scope.options.loaded = true;
-      window.kjsfdhfskj = row
       setTimeout(function() {
         $scope.options.aaData = row;
         $scope.$apply();

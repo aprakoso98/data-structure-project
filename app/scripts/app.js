@@ -29,15 +29,15 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/siswa', {
-        templateUrl: 'views/siswa.html',
-        controller: 'SiswaCtrl',
-        controllerAs: 'siswa'
-      })
       .when('/guru', {
         templateUrl: 'views/guru.html',
         controller: 'GuruCtrl',
         controllerAs: 'guru'
+      })
+      .when('/siswa', {
+        templateUrl: 'views/siswa.html',
+        controller: 'SiswaCtrl',
+        controllerAs: 'siswa'
       })
       .when('/siswa/:kelas', {
         templateUrl: 'views/siswa-detail.html',
@@ -49,15 +49,20 @@ angular
         controller: 'KelasCtrl',
         controllerAs: 'kelas'
       })
-      .when('/kelas', {
-        templateUrl: 'views/kelas.html',
-        controller: 'KelasCtrl',
-        controllerAs: 'kelas'
-      })
       .when('/mutasi', {
         templateUrl: 'views/mutasi.html',
         controller: 'MutasiCtrl',
         controllerAs: 'mutasi'
+      })
+      .when('/pelaporan', {
+        templateUrl: 'views/pelaporan.html',
+        controller: 'PelaporanCtrl',
+        controllerAs: 'pelaporan'
+      })
+      .when('/pelaporan/:sub', {
+        templateUrl: 'views/pelaporansub.html',
+        controller: 'PelaporansubCtrl',
+        controllerAs: 'pelaporanSub'
       })
       .otherwise({
         redirectTo: '/'

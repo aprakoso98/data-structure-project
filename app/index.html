@@ -26,7 +26,8 @@
     <div class="spinner"></div>
   </div>
   <div ng-include="'views/templates.html'"></div>
-  <div ng-include="'views/index.html'"></div>
+  <div ng-include="'views/index.html'" ng-if="ngView == 'LoggedIn'"></div>
+  <div ng-include="'views/login.html'" ng-controller="LoginCtrl" class="login-wrapper text-center" ng-if="ngView == 'NotLoggedIn'"></div>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <script>
   ! function(A, n, g, u, l, a, r) {
@@ -68,6 +69,11 @@
   <script src="scripts/controllers/kelas.js"></script>
   <script src="scripts/controllers/mutasi.js"></script>
   <script src="scripts/directives/mytable.js"></script>
+  <script src="scripts/controllers/pelaporan.js"></script>
+  <script src="scripts/controllers/pelaporansub.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
   <!-- endbuild -->
 </body>
 

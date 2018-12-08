@@ -8,7 +8,7 @@
       <button class="btn btn-lg btn-info" ng-click="ubahData()" command-table="Ubah Data">
         <i class="fa fa-pen" />
       </button>
-      <button class="btn btn-lg btn-danger" ng-click="hapusData()" command-table="Hapus Data">
+      <button class="btn btn-lg btn-danger" ng-disabled="options.canDelete == false" ng-click="hapusData()" command-table="Hapus Data">
         <i class="fa fa-trash" />
       </button>
     </div>
