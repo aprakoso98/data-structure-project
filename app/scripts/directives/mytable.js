@@ -7,7 +7,7 @@
  * # myTable
  */
 angular.module('dataStructureProjectApp')
-  .directive('myTable', function($rootScope, _sweet, _modal) {
+  .directive('myTable', function($rootScope, _sweet, _modal, _store) {
     return {
       restrict: 'E, A, C',
       templateUrl: 'table-template',
@@ -126,7 +126,8 @@ angular.module('dataStructureProjectApp')
         function ubahData(fn) {
           scope.ubahData = function() {
             var i = getDataSelect();
-            $rootScope.myModalData.dataEdit = scope.options.aaData[i];
+            _store.put("dataEditTemp", scope.options.aaData[i]);
+            $rootScope.myModalData.dataEdit = _store.get("dataEditTemp");
             if (i) {
               _modal.open({
                 title: "Ubah Data",
@@ -164,8 +165,9 @@ angular.module('dataStructureProjectApp')
                 title: "Hapus data ini?"
               }).then(function(resp) {
                 if (resp.value) {
-                  scope.options.aaData.splice(i, 1);
-                  scope.$apply();
+                  fn(scope.options.aaData[i], function() {
+                    scope.options.aaData.splice(i, 1);
+                  });
                 }
               });
             } else {

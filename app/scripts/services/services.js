@@ -77,6 +77,12 @@ angular.module('dataStructureProjectApp')
 						kelas: kelas
 					}
 				});
+			},
+			addUpdateSiswa: function(param){
+				return _http.post(api + "/data-structure-ws/rest/siswa/insert-or-update", param);
+			},
+			deleteSiswa: function(param){
+				return _http.post(api + "/data-structure-ws/rest/siswa/delete", param);
 			}
 		}
 	})

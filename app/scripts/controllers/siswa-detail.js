@@ -17,17 +17,28 @@ angular.module('dataStructureProjectApp')
     window.scope = $scope = $scope;
     $scope.params = $routeParams;
     $scope.addData = function(data, callback) {
-      _loading.show();
-      setTimeout(function(){
-        callback();
-        _loading.hide();
-      }, 1000);
+      _api.addUpdateSiswa(data).then(function(resp){
+        if (resp.data == 1){
+          callback();
+        }
+      });
     }
     $scope.ubahData = function(data, callback) {
-      callback();
+      _api.addUpdateSiswa(data).then(function(resp){
+        if (resp.data == 1){
+          callback();
+        }
+      });
     }
     $scope.hapusData = function(data, callback) {
-      callback();
+      _api.deleteSiswa({
+        NIS: data[0],
+        NISN: data[1]
+      }).then(function(resp){
+        if (resp.data == 1){
+          callback();
+        }
+      });
     }
     $scope.counter = 5;
     $scope.myTable = null;

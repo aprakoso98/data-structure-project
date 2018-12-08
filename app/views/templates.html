@@ -55,7 +55,7 @@
       </div>
       <div class="form-group" ng-if="column.valVal.type == 'textarea'">
         <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
-        <textarea ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}" rows="3"></textarea>
+        <textarea placeholder="{{column.valVal.placeholder}}" ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}" rows="3"></textarea>
       </div>
       <div class="form-group" ng-if="column.valVal.type == 'file'">
         <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
