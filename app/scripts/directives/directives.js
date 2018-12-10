@@ -89,18 +89,24 @@ angular.module('dataStructureProjectApp')
       }
     }
   })
-  .directive('ngAlias', function($compile) {
+  .directive('ngAlias', function() {
     return {
-      restrict: "A",
-      link: function(scope, element, attrs) {
-        var args = attrs.ngAlias.split('as').map(function(elm) { return elm.replace(/ /g, '') });
-        scope[args[0]] = '';
-        var dot = args[1].split('.');
-        var object = {};
-        dot.forEach(function(value, index) {
-          index === 0 ? object = scope[value] : object = object[value] === null ? object[value] = {} : object[value];
+      link: function($scope, elem, attrs) {
+        function set(path, val, scope, i) {
+          var key = path[i];
+          if (i === path.length - 1) return scope[key] = val;
+          if (angular.isUndefined(scope[key])) scope[key] = {};
+          return set(path, val, scope[key], i + 1);
+        }
+        var aliases = attrs.ngAlias.split(',');
+        window.scopeAlias = scope = scope;
+        angular.forEach(aliases, function(alias) {
+          var parts = alias.split(' as ');
+          var path = parts[0].trim().split('.');
+          $scope.$watch(parts[1].trim(), function(val) {
+            set(path, val, $scope, 0);
+          });
         });
-        scope[args[0]] = object;
       }
     };
   })

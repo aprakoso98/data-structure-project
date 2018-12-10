@@ -19,7 +19,10 @@ angular.module('dataStructureProjectApp')
         scope.$watch('options.hapusData', hapusData, true);
         scope.$watch('options.aoColumns', aoColumns, true);
         scope.$watch('options.loaded', loaded, true);
-
+        scope.$watch('options.refreshData', function(fn){
+          scope.refreshData = fn;
+        }, true);
+window.scopeTab = scope = scope;
         function loaded(isTrue) {
           if (isTrue) {
             var table = element.find("table");

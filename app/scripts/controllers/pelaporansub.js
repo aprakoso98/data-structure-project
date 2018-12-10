@@ -14,34 +14,14 @@ angular.module('dataStructureProjectApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $scope.complete = function(){
-    	console.log(this)
-	    $( "#tags" ).autocomplete({
-	      source: $scope.availableTags
-	    });
-    } 
+    window.scope = $scope = $scope;
+    $scope.stringify = function(data){
+      return stringify(data, "    ");
+    }
+    $scope.params = $routeParams;
+    $scope.formLomba = {}
+    $scope.selected = "";
+    _api.getSiswa().then(function(resp){
+      $scope.dataSiswa = resp.data.data;
+    });
   });

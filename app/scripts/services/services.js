@@ -79,8 +79,8 @@ angular.module('dataStructureProjectApp')
         });
         return q.promise;
       },
-      getAllGuru: function() {
-        return _http.get(api + "/data-structure-ws/rest/guru/id");
+      getSiswa: function(){
+        return _http.get(api + "/data-structure-ws/rest/siswa/all");
       },
       getSiswaKelas: function(kelas) {
         return _http.post(api + "/data-structure-ws/rest/siswa/find-by-kelas", {
@@ -94,7 +94,22 @@ angular.module('dataStructureProjectApp')
       },
       deleteSiswa: function(param) {
         return _http.post(api + "/data-structure-ws/rest/siswa/delete", param);
-      }
+      },
+      getAllGuru: function() {
+        return _http.get(api + "/data-structure-ws/rest/guru/id");
+      },
+      addUpdateGuru: function(param) {
+        return _http.post(api + "/data-structure-ws/rest/guru/insert-or-update", param);
+      },
+      deleteGuru: function(param) {
+        return _http.post(api + "/data-structure-ws/rest/guru/delete", param);
+      },
+      addUpdateKelas: function(param) {
+        return _http.post(api + "/data-structure-ws/rest/kelas/insert-or-update", param);
+      },
+      deleteKelas: function(param) {
+        return _http.post(api + "/data-structure-ws/rest/kelas/delete", param);
+      },
     }
   })
   .service('_http', function($q, $http) {

@@ -11,6 +11,10 @@
       <button class="btn btn-lg btn-danger" ng-disabled="options.canDelete == false" ng-click="hapusData()" command-table="Hapus Data">
         <i class="fa fa-trash" />
       </button>
+      <button class="btn btn-lg btn-link" disabled ng-click="hapusData()"></button>
+      <button class="btn btn-lg btn-secondary" ng-click="refreshData()" command-table="Refresh Data">
+        <i class="fa fa-refresh" />
+      </button>
     </div>
     <div class="col align-right">
       <button class="btn btn-lg btn-success" ng-click="hapusData()" command-table="Export Data">
@@ -20,6 +24,17 @@
   </div>
 </div>
 <table class="table data-table"></table>
+</script>
+<script type="text/ng-template" id="autocomplete">
+  <div class="auto-complete">
+    <div class="input-auto-complete">
+    <input type="text" ng-blur="blur()" ng-focus="displayed()" ng-model="search" class="{{classInput}}">
+    <i class="glyphicon glyphicon-remove" ng-click="clearSelection()"></i>
+  </div>
+    <ul class="list-group" ng-class="{ 'visible': visible }">
+      <li ng-click="select(option)" inject ng-repeat="option in data | filter: search | orderBy: filterSort" class="list-group-item"></li>
+    </ul>
+  </div>
 </script>
 <script type="text/ng-template" id="breadcrumb">
   <nav aria-label="breadcrumb">

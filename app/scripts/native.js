@@ -131,3 +131,6 @@ function serializeArray(form){
   }
   return ret;
 }
+function stringify(obj, indent){
+  return JSON.stringify(obj, null, 4);
+}

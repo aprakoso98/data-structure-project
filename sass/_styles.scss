@@ -1,24 +1,59 @@
 body {
   font-size: 15px;
 }
-
 .align-right {
   text-align: right;
 }
-
+.auto-complete {
+  position: relative;
+  width: 100%;
+  .input-auto-complete {
+    position: relative;
+    input {
+      width: 100%;
+      padding-right: 10px;
+    }
+    i {
+      position: absolute;
+      top: 7px;
+      right: 5px;
+      cursor: pointer;
+    }
+  }
+  .list-group {
+    display: none;
+    position: absolute;
+    background: white;
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 9999;
+    &.visible {
+      display: block;
+    }
+    .list-group-item {
+      cursor: pointer;
+      &:hover {
+        background: transparentize(black, .9);
+      }
+    }
+  }
+}
 .loading {
-	@keyframes spin {
-	    100% { transform: rotate(360deg); }
-	}
-	display: none;
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  display: none;
   position: absolute;
   background: transparentize(black, .5);
   width: 100%;
   height: 100%;
   z-index: 9999;
-	&.visible {
-		display: block;
-	}
+  &.visible {
+    display: block;
+  }
   .spinner {
     text-indent: 999em;
     width: $circleDiam;
@@ -29,7 +64,6 @@ body {
     margin: -$circleDiam / 2;
     background-color: #888;
     border-radius: 50%;
-
     &:after {
       content: '';
       position: absolute;
@@ -44,79 +78,62 @@ body {
     }
   }
 }
-
 [my-table] {
   .command {
     margin-bottom: 10px;
-
     .command-hover {
       transition: .15s;
       font-size: 0%;
-
       &.show-value {
         font-size: 100%;
       }
     }
   }
-
   .dataTables_wrapper {
     .data-table {
-
       .DataTables_sort_icon,
       .table-index {
         display: none;
       }
     }
-
     .dataTables_paginate {
       a {
         padding: 5px;
-
         padding: {
           left: 10px;
           right: 10px;
         }
-
         &.next,
         &.previous {
           padding: 5px;
         }
       }
     }
-
     .odd {
       // background: transparentize($blue, 0.7);
     }
-
     .even {
       // background: yellow;
     }
   }
 }
-
 .breadcrumb {
   font-size: 120%;
-
   .breadcrumb-item {
     color: #007bff;
-
     &:hover {
       text-decoration: underline;
     }
   }
 }
-
 .wrapper-index {
   position: relative;
   top: 40vh;
-
   .content {
     @include centerer;
-
     .card-wrapper {
       margin-bottom: 10px;
       text-align: center;
-
       .card {
         padding: 25px;
         margin-bottom: 5px;
@@ -125,33 +142,26 @@ body {
     }
   }
 }
-
 .main {
   &.navbar {
     margin: 0;
     padding: 0px !important;
-
     border: {
       radius: 0px;
       bottom: 0px;
     }
-
     .navbar-brand,
     .navbar-nav,
     .menu-navbar {
       font-size: 28px !important;
     }
-
     .navbar-brand {
       color: white;
     }
-
     .navbar-nav {
       padding-left: 20px;
-
       .badge {
         font-size: 50% !important;
-
         margin: {
           left: 15px !important;
           top: 0px !important;
@@ -159,18 +169,15 @@ body {
       }
     }
   }
-
   &.container {
     margin: 0;
     padding: 0;
     max-width: initial !important;
-
     .sidebar {
       transition: .3s;
       margin: 0px !important;
       min-height: calc(100vh - 52px);
     }
-
     #content-wrapper {
       padding: {
         top: 0px !important;
@@ -178,14 +185,11 @@ body {
         right: 10px !important;
       }
     }
-
     .scroll-to-top {
       z-index: 2;
       display: block;
     }
-
     .content-view {}
-
     .nav-item {
       .nav-link {
         span {
@@ -194,22 +198,17 @@ body {
       }
     }
   }
-
   &.footer {}
 }
-
 .dropdown-menu {
   background: white !important;
   border: 1px solid transparentize(black, 0.75) !important;
-
   .dropdown-item {
     font-size: 12px;
-
     &.link {
       cursor: pointer;
     }
   }
-
   .dropdown-header {
     font-size: 12px;
   }

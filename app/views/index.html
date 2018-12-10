@@ -63,7 +63,7 @@
         <span>Siswa</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="siswaDropdown">
-        <a class="dropdown-item" dir-href="#/siswa/{{data.idKelas}}" ng-repeat="data in allKelas">{{data.idKelas}}</a>
+        <a class="dropdown-item" dir-href="#/siswa/{{data['ID Kelas']}}" ng-repeat="data in allKelas.data">{{data['ID Kelas']}}</a>
       </div>
     </li>
     <li class="nav-item dropdown" ng-class="{ 'active': currentPath == '/siswa' }">
