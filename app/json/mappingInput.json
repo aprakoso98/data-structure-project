@@ -7,12 +7,17 @@
     ]
   },
   "Alamat": {
-  	"type": "textarea",
+    "type": "textarea",
     "placeholder": "Format wajib: Alamat#Kecamatan#KodePos\nContoh: Perumnas#Sukaluyu#41238"
   },
-  "Agama": {"type": "select",
+  "Agama": {
+    "type": "select",
     "val": [
       "Islam",
       "Kristen"
-    ]}
+    ]
+  },
+  "Tanggal Lahir": {
+    "type": "date"
+  }
 }

@@ -1,8 +1,14 @@
 body {
   font-size: 15px;
 }
+.bg-white {
+  background: white;
+}
 .align-right {
   text-align: right;
+}
+.angularjs-datetime-picker {
+  z-index: 9999;
 }
 .auto-complete {
   position: relative;
@@ -15,8 +21,8 @@ body {
     }
     i {
       position: absolute;
-      top: 7px;
-      right: 5px;
+      right: 0;
+      margin: 7px;
       cursor: pointer;
     }
   }
@@ -109,11 +115,14 @@ body {
         }
       }
     }
-    .odd {
-      // background: transparentize($blue, 0.7);
-    }
-    .even {
-      // background: yellow;
+    tbody {
+      border: 1px black solid;
+      .even {
+        background: transparentize(black, 0.95);
+        &.selected {
+          background: #B0BED9 !important;
+        }
+      }
     }
   }
 }

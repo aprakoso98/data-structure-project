@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="table-template">
   <div class="command">
   <div class="row">
-    <div class="col">
+    <div class="col col-8">
       <button class="btn btn-lg btn-primary" ng-click="addData()" command-table="Add Data">
         <i class="fa fa-plus" />
       </button>
@@ -16,7 +16,7 @@
         <i class="fa fa-refresh" />
       </button>
     </div>
-    <div class="col align-right">
+    <div class="col col-4 align-right">
       <button class="btn btn-lg btn-success" ng-click="hapusData()" command-table="Export Data">
         <i class="fa fa-file-export" />
       </button>
@@ -60,7 +60,7 @@
       </div>
       <div class="form-group" ng-if="column.valVal.type == 'date'">
         <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>
-        <input type="date" ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control" id="form-modal-{{column.sTitle.toValidId()}}">
+        <input type="text" datetime-picker date-format="dd-MM-yyyy" date-only readonly ng-model="myModalData.dataEdit[$index]" name="{{column.sTitle}}" class="form-control bg-white" id="form-modal-{{column.sTitle.toValidId()}}">
       </div>
       <div class="form-group" ng-if="column.valVal.type == 'select'">
         <label for="form-modal-{{column.sTitle.toValidId()}}">{{column.sTitle}}</label>

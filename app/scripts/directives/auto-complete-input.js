@@ -20,34 +20,39 @@ angular.module('dataStructureProjectApp')
         orderBy: '@'
       },
       link: function(scope, element, attr) {
-        scope.$watch('orderBy', function(order){
-          order = order.replace(/ /g, "").split(",");
-          scope.filterSort = order;
-          console.log(order)
+        scope.$watch('orderBy', function(order) {
+          if (order) {
+            order = order.replace(/ /g, "").split(",");
+            scope.filterSort = order;
+          }
         });
         scope.blur = function() {
-       		setTimeout(function(){
-       			scope.visible = false;
-       			scope.$apply();
-       		}, 150);
+          setTimeout(function() {
+            scope.visible = false;
+            scope.$apply();
+          }, 150);
         }
         scope.displayed = function() {
-       		scope.visible = true;
+          scope.visible = true;
         }
-        scope.clearSelection = function(){
-        	scope.selected = "";
-        	scope.search = "";
+        scope.clearSelection = function() {
+          scope.selected = "";
+          scope.search = "";
         }
         scope.select = function(data) {
-        	scope.selected = data;
-          scope.visible = false;
-          var regex = /{([a-z0-9\-]+)}/gi,
-          props = scope.view.match(regex).map(function(prop){
-            var value = prop.replace(/{/g, "").replace(/}/g, "");
-            return DotObject.pick(value, scope.selected);
-          }),
-          view = scope.view.replace(regex, "%s");
-          scope.search = vsprintf(view, props);
+          if (scope.view) {
+            scope.selected = data;
+            scope.visible = false;
+            var regex = /{([a-z0-9\-]+)}/gi,
+              props = scope.view.match(regex).map(function(prop) {
+                var value = prop.replace(/{/g, "").replace(/}/g, "");
+                return DotObject.pick(value, scope.selected);
+              }),
+              view = scope.view.replace(regex, "%s");
+            scope.search = vsprintf(view, props);
+          } else {
+            scope.search = data;
+          }
         }
       }
     }
