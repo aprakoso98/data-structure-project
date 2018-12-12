@@ -5,8 +5,8 @@
   <div class="row">
     <div class="form-group col col-6">
       <label>Status</label>
-      <auto-complete-input data="['All', 'Siswa Masuk', 'Siswa Keluar']" selected="selected" class-input="form-control">
-        <span>{{option}}</span>
+      <auto-complete-input data="mutasiSelect" filter="false" view="{name}" selected="selected.Mutasi" class-input="form-control">
+        <span>{{option.name}}</span>
       </auto-complete-input>
     </div>
   </div>
@@ -23,35 +23,26 @@
       <label>Nama Lomba</label>
       <input type="text" class="form-control" ng-model="formLomba.NamaLomba">
     </div>
-  </div>
-  <div class="row">
     <div class="form-group col col-6">
       <label>Tingkat</label>
       <input type="text" class="form-control" ng-model="formLomba.Tingkat">
     </div>
-  </div>
-  <div class="row">
     <div class="form-group col col-6">
       <label>Cabang</label>
       <input type="text" class="form-control" ng-model="formLomba.Cabang">
     </div>
-  </div>
-  <div class="row">
     <div class="form-group col col-6">
-      <label>Nama Peserta</label>
-      <auto-complete-input data="dataSiswa" order-by="Kelas,Nama" selected="selected" view="{NIS} - {Nama} - {Kelas}" class-input="form-control">
-        <h3>{{option.Nama}}</h3>
-        <p>NIS: {{option.NIS}}</p>
-        <p>NISN: {{option.NISN}}</p>
-        <p>Kelas: {{option.Kelas}}</p>
+      <label>Peserta</label>
+      <auto-complete-input data="dataSiswa" order-by="Kelas,Nama" selected="selected.Lomba" view="{NIS} - {Nama} - {Kelas}" class-input="form-control">
+        <h3 class="no-margin no-padding">{{option.Nama}}</h3>
+        <p class="no-margin no-padding">NIS: {{option.NIS}}</p>
+        <p class="no-margin no-padding">NISN: {{option.NISN}}</p>
+        <p class="no-margin no-padding">Kelas: {{option.Kelas}}</p>
       </auto-complete-input>
     </div>
-    <div class="form-group col col-12">
-      <textarea class="form-control">{{ stringify(selected) }}</textarea>
-    </div>
   </div>
   <div class="row">
-    <div class="form-group col col-6 text-right">
+    <div class="form-group col text-right">
       <button class="btn btn-primary">Cetak</button>
     </div>
   </div>

@@ -1,6 +1,12 @@
 body {
   font-size: 15px;
 }
+.no-margin {
+  margin: 0px !important;
+}
+.no-padding {
+  padding: 0px !important;
+}
 .bg-white {
   background: white;
 }
@@ -39,6 +45,8 @@ body {
     }
     .list-group-item {
       cursor: pointer;
+      padding: 5px 10px;
+      margin: 0px;
       &:hover {
         background: transparentize(black, .9);
       }

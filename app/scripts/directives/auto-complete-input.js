@@ -16,14 +16,21 @@ angular.module('dataStructureProjectApp')
         data: '=',
         selected: '=',
         classInput: '@',
+        filter: '@',
         view: '@',
         orderBy: '@'
       },
       link: function(scope, element, attr) {
+        window.scopedir = scope = scope;
         scope.$watch('orderBy', function(order) {
           if (order) {
             order = order.replace(/ /g, "").split(",");
             scope.filterSort = order;
+          }
+        });
+        scope.$watch('search', function(val){
+          if (scope.filter != 'false'){
+            scope.filterData = scope.search;
           }
         });
         scope.blur = function() {
@@ -40,10 +47,10 @@ angular.module('dataStructureProjectApp')
           scope.search = "";
         }
         scope.select = function(data) {
+          scope.selected = data;
           if (scope.view) {
-            scope.selected = data;
             scope.visible = false;
-            var regex = /{([a-z0-9\-]+)}/gi,
+            var regex = /{([a-z0-9\-]+)}/g,
               props = scope.view.match(regex).map(function(prop) {
                 var value = prop.replace(/{/g, "").replace(/}/g, "");
                 return DotObject.pick(value, scope.selected);
