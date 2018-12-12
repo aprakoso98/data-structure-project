@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name dataStructureProjectApp.directive:myTable
@@ -19,10 +18,10 @@ angular.module('dataStructureProjectApp')
         scope.$watch('options.hapusData', hapusData, true);
         scope.$watch('options.aoColumns', aoColumns, true);
         scope.$watch('options.loaded', loaded, true);
-        scope.$watch('options.refreshData', function(fn){
+        scope.$watch('options.refreshData', function(fn) {
           scope.refreshData = fn;
         }, true);
-window.scopeTab = scope = scope;
+        window.scopeTab = scope = scope;
         function loaded(isTrue) {
           if (isTrue) {
             var table = element.find("table");
@@ -48,12 +47,10 @@ window.scopeTab = scope = scope;
             scope.myTable = table.dataTable(scope.options);
           }
         }
-
         function getDataSelect() {
           var index = element.find(".selected .table-index");
           return index.html();
         }
-
         function aoColumns(columns) {
           $rootScope.myModalData.columnsForm = columns;
           if (Array.isArray(columns)) {
@@ -76,7 +73,6 @@ window.scopeTab = scope = scope;
             }
           }
         }
-
         function handleModelUpdates(data) {
           try {
             if (Array.isArray(data)) {
@@ -99,7 +95,6 @@ window.scopeTab = scope = scope;
             // console.error(err);
           }
         }
-
         function addData(fn) {
           scope.addData = function() {
             $rootScope.myModalData.dataEdit = []
@@ -125,7 +120,6 @@ window.scopeTab = scope = scope;
             });
           }
         }
-
         function ubahData(fn) {
           scope.ubahData = function() {
             var i = getDataSelect();
@@ -157,7 +151,6 @@ window.scopeTab = scope = scope;
             }
           }
         }
-
         function hapusData(fn) {
           scope.hapusData = function() {
             var i = getDataSelect();
