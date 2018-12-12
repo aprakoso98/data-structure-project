@@ -101,6 +101,26 @@ body {
       .table-index {
         display: none;
       }
+      thead {
+        th {
+          white-space: nowrap;
+          &:after {
+            content: '' !important;
+          }
+        }
+      }
+      tbody {
+        border: 1px black solid;
+        td {
+          white-space: nowrap;
+          .even {
+            background: transparentize(black, 0.95);
+            &.selected {
+              background: #B0BED9 !important;
+            }
+          }
+        }
+      }
     }
     .dataTables_paginate {
       a {
@@ -112,15 +132,6 @@ body {
         &.next,
         &.previous {
           padding: 5px;
-        }
-      }
-    }
-    tbody {
-      border: 1px black solid;
-      .even {
-        background: transparentize(black, 0.95);
-        &.selected {
-          background: #B0BED9 !important;
         }
       }
     }

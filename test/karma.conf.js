@@ -29,8 +29,11 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/angularjs-datepicker/dist/angular-datepicker.js',
-      'bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js',
+      'bower_components/moment/moment.js',
+      'bower_components/sweetalert2/dist/sweetalert2.js',
+      'bower_components/sprintf/dist/sprintf.min.js',
+      'bower_components/sprintf/dist/angular-sprintf.min.js',
+      'bower_components/datatables.net/js/jquery.dataTables.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

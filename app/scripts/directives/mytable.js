@@ -27,7 +27,7 @@ window.scopeTab = scope = scope;
           if (isTrue) {
             var table = element.find("table");
             var obj = {
-              sScrollX: "1000%",
+              sScrollX: "9999%",
               sScrollXInner: "100%",
               bJQueryUI: true,
               bDestroy: true,
