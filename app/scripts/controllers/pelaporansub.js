@@ -18,6 +18,9 @@ angular.module('dataStructureProjectApp')
     $scope.stringify = function(data){
       return stringify(data, "    ");
     }
+    $scope.exportMutasi = function(){
+      window.open(api + "/data-structure-ws/rest/mutasi/export", "_blank");
+    }
     $scope.params = $routeParams;
     $scope.formLomba = {}
     $scope.selected = "";

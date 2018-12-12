@@ -68,6 +68,7 @@ angular.module('dataStructureProjectApp')
     }
   })
   .service('_api', function($q, $rootScope, _http) {
+    $rootScope.apiPath = api;
     return {
       getKelas: function() {
         var q = $q.defer();
