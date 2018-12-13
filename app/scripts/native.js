@@ -142,3 +142,15 @@ function toUrl(obj) {
   }
   return str;
 }
+function inObject(obj, keys, mustFill){
+  var objProp = Object.getOwnPropertyNames(obj);
+  keys = keys.map(function(key){
+    var ret = objProp.Contains(key);
+    if (mustFill){
+      ret = Boolean(obj[key]) && ret;
+    }
+    return ret;
+  });
+  console.log(keys)
+  return !keys.Contains(false);
+}
