@@ -26,7 +26,7 @@ angular.module('dataStructureProjectApp')
           if (isTrue) {
             var table = element.find("table");
             var obj = {
-              sScrollX: "9999%",
+              sScrollX: "1000%",
               sScrollXInner: "100%",
               bJQueryUI: true,
               bDestroy: true,

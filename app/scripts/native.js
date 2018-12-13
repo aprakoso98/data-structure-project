@@ -36,14 +36,12 @@ Array.prototype.serializeArrayToObject = function() {
 }
 Array.prototype.loopCallback = function(callback, reverse, index) {
   var arr = this;
-
   function retCallback(timeout) {
     timeout = timeout || 0;
     setTimeout(function() {
       arr.loopCallback(callback, reverse, index + 1);
     }, timeout);
   }
-
   function retCallbackReverse(timeout) {
     timeout = timeout || 0;
     setTimeout(function() {
@@ -122,7 +120,7 @@ Object.filterObj = function(Obj, Arr) {
   }
   return ret;
 }
-function serializeArray(form){
+function serializeArray(form) {
   var formData = form.serializeArray();
   var ret = {}
   for (var i = 0; i < formData.length; i++) {
@@ -131,6 +129,16 @@ function serializeArray(form){
   }
   return ret;
 }
-function stringify(obj, indent){
+function stringify(obj, indent) {
   return JSON.stringify(obj, null, 4);
+}
+function toUrl(obj) {
+  var str = "";
+  for (var key in obj) {
+    if (str != "") {
+      str += "&";
+    }
+    str += key + "=" + encodeURIComponent(obj[key]);
+  }
+  return str;
 }

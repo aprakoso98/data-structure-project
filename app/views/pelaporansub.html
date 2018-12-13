@@ -1,5 +1,34 @@
 <h1>SDN PASIRKALIKI I</h1>
 <breadcrumb></breadcrumb>
+<div ng-if="params.sub == 'pengajuan'">
+  <h3>Pengajuan Surat Siswa Pindahan</h3>
+  <div class="row">
+    <div class="form-group col col-6">
+      <label>Nama</label>
+      <auto-complete-input data="dataSiswa" order-by="Nama,NIS" selected="selected.Pengajuan" view="{Nama}" class-input="form-control">
+        <h3 class="no-margin no-padding">{{option.Nama}}</h3>
+        <p class="no-margin no-padding">NIS: {{option.NIS}}</p>
+      </auto-complete-input>
+    </div>
+    <div class="form-group col col-6">
+      <label>NIS</label>
+      <input type="text" readonly class="bg-white form-control" ng-model="formPengajuan.NIS">
+    </div>
+    <div class="form-group col col-6">
+      <label>Tujuan Sekolah</label>
+      <input type="text" class="form-control" ng-model="formPengajuan.TujuanSekolah">
+    </div>
+    <div class="form-group col col-6">
+      <label>Alamat Sekolah</label>
+      <input type="text" class="form-control" ng-model="formPengajuan.AlamatSekolah">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col text-right">
+      <button ng-click="cetakPengajuan()" class="btn btn-primary">Cetak</button>
+    </div>
+  </div>
+</div>
 <div ng-if="params.sub == 'mutasi'">
   <h3>Mutasi Siswa</h3>
   <div class="row">
@@ -21,15 +50,15 @@
   <div class="row">
     <div class="form-group col col-6">
       <label>Nama Lomba</label>
-      <input type="text" class="form-control" ng-model="formLomba.NamaLomba">
+      <input type="text" class="form-control" ng-model="formLomba.lomba">
     </div>
     <div class="form-group col col-6">
       <label>Tingkat</label>
-      <input type="text" class="form-control" ng-model="formLomba.Tingkat">
+      <input type="text" class="form-control" ng-model="formLomba.tingkat">
     </div>
     <div class="form-group col col-6">
       <label>Cabang</label>
-      <input type="text" class="form-control" ng-model="formLomba.Cabang">
+      <input type="text" class="form-control" ng-model="formLomba.cabang">
     </div>
     <div class="form-group col col-6">
       <label>Peserta</label>
@@ -43,7 +72,7 @@
   </div>
   <div class="row">
     <div class="form-group col text-right">
-      <button class="btn btn-primary">Cetak</button>
+      <button class="btn btn-primary" ng-click="cetakLomba()">Cetak</button>
     </div>
   </div>
 </div>

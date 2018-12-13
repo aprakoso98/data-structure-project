@@ -21,7 +21,6 @@ angular.module('dataStructureProjectApp')
         orderBy: '@'
       },
       link: function(scope, element, attr) {
-        window.scopedir = scope = scope;
         scope.$watch('orderBy', function(order) {
           if (order) {
             order = order.replace(/ /g, "").split(",");
@@ -50,7 +49,7 @@ angular.module('dataStructureProjectApp')
           scope.selected = data;
           if (scope.view) {
             scope.visible = false;
-            var regex = /{([a-z0-9\-]+)}/g,
+            var regex = /{([a-z0-9\-]+)}/gi,
               props = scope.view.match(regex).map(function(prop) {
                 var value = prop.replace(/{/g, "").replace(/}/g, "");
                 return DotObject.pick(value, scope.selected);
