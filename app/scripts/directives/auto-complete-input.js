@@ -14,7 +14,7 @@ angular.module('dataStructureProjectApp')
       templateUrl: "autocomplete",
       scope: {
         data: '=',
-        selected: '=',
+        selectedData: '=',
         classInput: '@',
         filter: '@',
         view: '@',
@@ -42,17 +42,17 @@ angular.module('dataStructureProjectApp')
           scope.visible = true;
         }
         scope.clearSelection = function() {
-          scope.selected = "";
+          scope.selectedData = "";
           scope.search = "";
         }
         scope.select = function(data) {
-          scope.selected = data;
+          scope.selectedData = data;
           if (scope.view) {
             scope.visible = false;
             var regex = /{([a-z0-9\-]+)}/gi,
               props = scope.view.match(regex).map(function(prop) {
                 var value = prop.replace(/{/g, "").replace(/}/g, "");
-                return DotObject.pick(value, scope.selected);
+                return DotObject.pick(value, scope.selectedData);
               }),
               view = scope.view.replace(regex, "%s");
             scope.search = vsprintf(view, props);

@@ -5,7 +5,7 @@
   <div class="row">
     <div class="form-group col col-6">
       <label>Nama</label>
-      <auto-complete-input data="dataSiswa" order-by="Nama,NIS" selected="selected.Pengajuan" view="{Nama}" class-input="form-control">
+      <auto-complete-input data="dataSiswa" order-by="Nama,NIS" selected-data="selected.Pengajuan" view="{Nama}" class-input="form-control">
         <h3 class="no-margin no-padding">{{option.Nama}}</h3>
         <p class="no-margin no-padding">NIS: {{option.NIS}}</p>
       </auto-complete-input>
@@ -34,7 +34,7 @@
   <div class="row">
     <div class="form-group col col-6">
       <label>Status</label>
-      <auto-complete-input data="mutasiSelect" filter="false" view="{name}" selected="selected.Mutasi" class-input="form-control">
+      <auto-complete-input data="mutasiSelect" filter="false" view="{name}" selected-data="selected.Mutasi" class-input="form-control">
         <span>{{option.name}}</span>
       </auto-complete-input>
     </div>
@@ -52,17 +52,17 @@
       <label>Nama Lomba</label>
       <input type="text" class="form-control" ng-model="formLomba.lomba">
     </div>
-    <div class="form-group col col-6">
-      <label>Tingkat</label>
-      <input type="text" class="form-control" ng-model="formLomba.tingkat">
-    </div>
+  </div>
+  <div class="row">
     <div class="form-group col col-6">
       <label>Cabang</label>
       <input type="text" class="form-control" ng-model="formLomba.cabang">
     </div>
+  </div>
+  <div class="row">
     <div class="form-group col col-6">
       <label>Peserta</label>
-      <auto-complete-input data="dataSiswa" order-by="Kelas,Nama" selected="selected.Lomba" view="{NIS} - {Nama} - {Kelas}" class-input="form-control">
+      <auto-complete-input data="dataSiswa" order-by="Kelas,Nama" selected-data="selected.Lomba" view="{NIS} - {Nama} - {Kelas}" class-input="form-control">
         <h3 class="no-margin no-padding">{{option.Nama}}</h3>
         <p class="no-margin no-padding">NIS: {{option.NIS}}</p>
         <p class="no-margin no-padding">NISN: {{option.NISN}}</p>
@@ -71,7 +71,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="form-group col text-right">
+    <div class="form-group col col-6 text-right">
       <button class="btn btn-primary" ng-click="cetakLomba()">Cetak</button>
     </div>
   </div>
