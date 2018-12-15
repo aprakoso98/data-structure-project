@@ -2,13 +2,9 @@
 <breadcrumb></breadcrumb>
 <div class="wrapper-index">
 	<div class="row content">
-		<div class="no-padding col col-lg-6 card-wrapper">
-			<div class="card">{{jumlah.guru}}</div>
-			<h3>Jumlah Guru</h3>
-		</div>
-		<div class="no-padding col col-lg-6 card-wrapper">
-			<div class="card">{{jumlah.siswa}}</div>
-			<h3>Jumlah Siswa</h3>
+		<div class="col card-wrapper" ng-repeat="(key, val) in dataStatistik">
+			<div class="card">{{val}}</div>
+			<h3>Jumlah Siswa {{key.ucwords()}}</h3>
 		</div>
 	</div>
 </div>
